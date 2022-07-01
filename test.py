@@ -5,3 +5,7 @@ age = 4
 
 print("My " + animal + "name is " + name)
 print("She is " + str(age) + " years old")
+
+
+print("My ", animal, "name is ", name)
+print("She is ", age, " years old")
