@@ -1,3 +1,5 @@
+#How to write comments
+
 sentence = 'I am a boy'
 print(sentence)
 sentence2 = "You are a girl"
