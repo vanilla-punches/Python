@@ -1,3 +1,5 @@
+# How to add a particular numbers, strings, and characters
+
 # Method 1
 print("I am %d years old" %20) # %d for numbers
 print("I love %s" %"Python") # %s for strings, number
