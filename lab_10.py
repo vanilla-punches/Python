@@ -44,9 +44,21 @@
 #     print("Reminding gun: {0}" .format(gun))
 
 
-def army(soldier):
-    gun = 20 # This will work becauswe we define a local variable inside the function
+# def army(soldier):
+#     gun = 20 # This will work becauswe we define a local variable inside the function
+#     gun = gun - soldier
+#     print("Reminding gun: {0}" .format(gun))
+
+# army(9)
+
+
+
+# We can also use "return" in the function
+# In this case, we have to put gun in def and write gun when you call the function
+gun = 10
+def army(gun, soldier):
     gun = gun - soldier
     print("Reminding gun: {0}" .format(gun))
+    return gun
 
-army(9)
+gun = army(gun, 7)
