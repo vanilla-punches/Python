@@ -28,8 +28,36 @@
 #     print(line, end="")
 # score_file.close()
 
-score_file = open("score.txt", "r")
-lines = score_file.readlines()
-for line in lines:
-    print(line, end="")
-score_file.close()
+# score_file = open("score.txt", "r")
+# lines = score_file.readlines()
+# for line in lines:
+#     print(line, end="")
+# score_file.close()
+
+
+# pickle ---> save data as a file, so people save data in a file and others can use file to import data and use it
+
+import pickle
+profile_file = open("profile.pickle", "wb") # "wb" is for saving data in a file
+profile = {"Name": "Ian", "Age": 33, "Interests": ["Statistics", "Finance", "Soccer"]}
+print(profile)
+pickle.dump(profile, profile_file)
+profile_file.close()
+
+# profile_file = open("profile.pickle", "rb") # "rb" is to use file to import data
+# profile = pickle.load(profile_file)
+# print(profile)
+# profile_file.close()
+
+
+# with
+
+with open("profile.pickle", "rb") as profile_file:
+    print(pickle.load(profile_file))
+
+
+with open("study.txt", "w") as study_file:
+    study_file.write("University of Toronto, Mathematical Finance")
+
+with open("study.txt", "r") as study_file:
+    print(study_file.read())
