@@ -1,0 +1,5 @@
+Stats : 100
+Python : 90
+Finance : 95
+Machine learning : 90
+Stochastics : 95
