@@ -26,11 +26,15 @@
 
 # Regular unit
 class unit:
-    def __init__(self, name, stemina):
+    def __init__(self, name, stemina, speed):
         self.name = name
         self.stemina = stemina
+        self.speed = speed
         # self.damage = damage
-
+        
+    def move(self, location):
+        print("groun unit is moving")
+        print("{0} is moving toward {1} with speed of {2}".format(self.name, location, self.speed))
 # # marine1 = unit("marine", 40, 5)
 # # marine2 = unit("marine", 40, 5)
 # # tank = unit("tank", 150, 35)
@@ -49,10 +53,10 @@ class unit:
 
 # Attacking Units
 class attackunit(unit):
-    def __init__(self, name, stemina, damage):
+    def __init__(self, name, stemina, speed, damage ):
         # self.name = name
         # self.stemina = stemina
-        unit.__init__(self, name, stemina) # Transfering name and stemina class info from "unit" class we made above
+        unit.__init__(self, name, stemina, speed) # Transfering name and stemina class info from "unit" class we made above
         self.damage = damage
 
     def attack(self, location):
@@ -65,9 +69,61 @@ class attackunit(unit):
         if self.stemina <= 0:
             print("{0} is killed".format(self.name))
 
-firebet1 = attackunit("Firebet", 50, 16)
-# Attack
-firebet1.attack("South East")
-# Damaged
-firebet1.damaged(25)
-firebet1.damaged(25)
+# firebet1 = attackunit("Firebet", 50, 16, 5)
+# # Attack
+# firebet1.attack("South East")
+# # Damaged
+# firebet1.damaged(25)
+
+
+class flyable:
+    def __init__(self, speed):
+        self.speed = speed
+
+    def fly(self, name, location):
+        print("{0} is moving toward {1} with speed of {2}".format(name, location, self.speed))
+
+class flyableattack(attackunit, flyable):
+    def __init__(self, name, stemina, damage, speed):
+        attackunit.__init__(self, name, stemina, 0, damage) # ground unit speed 0
+        flyable.__init__(self, speed)
+
+    def move(self, location):
+        print("fylable unit is moving")
+        self.fly(self.name, location)
+
+# valkyrie = flyableattack("Valkyrie", 200, 6, 5)
+# valkyrie.fly(valkyrie.name, "East")
+
+# vulture  = attackunit("vulture", 80, 10, 20)
+# battlecruiser = flyableattack("Battlecruiser", 500, 25, 3)
+
+# vulture.move = "North West"
+# battlecruiser.fly(battlecruiser.name, "West")
+# battlecruiser.move("West")
+
+
+# Building
+
+# Pass function!
+
+# class buildingunit(unit):
+#     def __init__(self, name, stemina, location):
+#         pass # It just passes
+
+# supply_depot = buildingunit("Supply Depot", 500, "South West")
+
+# def game_start():
+#     print("Game has begun")
+
+# def game_over():
+#     pass
+
+# game_start()
+# game_over()
+
+class buildingunit(unit):
+    def __init__(self, name, stemina, location):
+        # unit.__init__(self, name, stemina, 0)
+        super().__init__(name, stemina, 0) # when you use super(), you don't need to use self in the bracket
+        self.location = location
