@@ -1,4 +1,8 @@
 # Regular Unit
+from re import U
+from random import *
+
+
 class Unit:
     def __init__(self, name, hp, speed):
         self.name = name
@@ -32,7 +36,7 @@ class Marine(AttackUnit):
     def stimpack(self):
         if self.hp > 10:
             self.hp -= 10
-            print("{0} : stimpack is used (HP is reduced by 10".format(self.name))
+            print("{0} : stimpack is used HP is reduced by 10".format(self.name))
         else:
             print("{0} : HP is too low. Can't use stimpack".format(self.name))
 
@@ -68,7 +72,7 @@ class FlyableAttackUnit(AttackUnit, Flyable):
 
 class Wraith(FlyableAttackUnit):
     def __init__(self):
-        FlyableAttackUnit.__init__("Wraith", 80, 20, 5)
+        FlyableAttackUnit.__init__(self, "Wraith", 80, 20, 5)
         self.clocked = False
     def clocking(self):
         if self.clocked == True:
@@ -76,3 +80,56 @@ class Wraith(FlyableAttackUnit):
         else:
             print("{0} : Clocking mode on".format(self.name))
             self.clocked = True
+
+
+def game_start():
+    print("[Notice] Game begins")
+def game_over():
+    print("Player: gg")
+    print("[Player] left the game")
+
+game_start()
+    
+m1 = Marine()
+m2 = Marine()
+m3 = Marine()
+
+t1 = Tank()
+t2 = Tank()
+
+w1 = Wraith()
+
+attack_units = []
+attack_units.append(m1)
+attack_units.append(m2)
+attack_units.append(m3)
+attack_units.append(t1)
+attack_units.append(t2)
+attack_units.append(w1)
+
+
+for unit in attack_units:
+    unit.move("North east")
+    
+
+Tank.seize_developed = True
+print("Seized Mode is completed")
+
+# Ready for attack
+for unit in attack_units:
+    if isinstance(unit, Marine):
+        unit.stimpack()
+    elif isinstance(unit, Wraith):
+        unit.clocking()
+    elif isinstance(unit, Tank):
+        unit.set_seize_mode()
+
+# Attack
+for unit in attack_units:
+    unit.attack("North East")
+
+# Damaged randomly
+for unit in attack_units:
+    unit.damaged(randint(5, 21))
+
+game_over()
