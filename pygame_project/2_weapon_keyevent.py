@@ -62,20 +62,21 @@ while running:
     # 2. Event operations(keyboard, mouse)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
+            running = False 
+
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
+            if event.key == pygame.K_LEFT: 
                 character_to_x -= character_speed
-            if event.key == pygame.K_RIGHT:
+            elif event.key == pygame.K_RIGHT: 
                 character_to_x += character_speed
-            elif event.key == pygame.K_SPACE: # For weapon use
-                weapon_x_pos = character_to_x + (character_width / 2) - (weapon_width / 2)
+            elif event.key == pygame.K_SPACE:
+                weapon_x_pos = character_x_pos + (character_width / 2) - (weapon_width / 2)
                 weapon_y_pos = character_y_pos
                 weapons.append([weapon_x_pos, weapon_y_pos])
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
-                character_x_pos = 0
+                character_to_x = 0
     
     # 3. Game character location
     character_x_pos += character_to_x
