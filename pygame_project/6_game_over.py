@@ -225,6 +225,11 @@ while running:
         del weapons[weapon_to_remove]
         weapon_to_remove = -1
 
+    # Game Over when all balls are removed
+    if len(balls) == 0:
+        game_result = "Mission Complete"
+        running = False
+
     # 5. Draw on screen
     screen.blit(background, (0, 0))
 
@@ -245,6 +250,19 @@ while running:
     timer = game_font.render("Time : {}".format(int(total_time - elapsed_time)), True, (255, 255, 255))
     screen.blit(timer, (10, 10))
 
+    # Stop the game after passing the time limit
+    if total_time - elapsed_time <= 0:
+        game_result = "Time Over"
+        running = False
+
     pygame.display.update() # repeat drawing background
+
+# Game Over msg
+msg = game_font.render(game_result, True, (255, 255, 0))
+msg_rect = msg.get_rect(center=(int(screen_width / 2), int(screen_height / 2)))
+screen.blit(msg, msg_rect)
+pygame.display.update()
+
+pygame.time.delay(2000)
 
 pygame.quit() # pygame ends
